@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import * as actionTypes from '../../store/actions';
 
+import './SearchBar.css';
+
 const SearchBar = (props) => {
 
     const [inputState, setInputState] = useState('');
@@ -19,7 +21,7 @@ const SearchBar = (props) => {
             </div>
             <div className="col-lg-2 col-md-3 col-sm-4 my-1 my-sm-0">
                 <button 
-                    className="btn btn-info btn-block"
+                    className="btn btn-search btn-block text-light"
                     onClick={() => props.onFilterPosts(inputState)}
                 >
                     Buscar &nbsp;

@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import BASE_URL from '../../helpers/data';
 import * as actionTypes from '../../store/actions';
 
+import './PostRow.css';
+
 const PostRow = (props) => {
 
     const deletePost = (id) => {
@@ -12,9 +14,11 @@ const PostRow = (props) => {
             id: id
         };
 
-        axios.delete(BASE_URL + '/post', { data: postToDelete }).then(resp => {
+        axios.delete(BASE_URL + '/post', { data: postToDelete })
+         .then(resp => {
             props.onDeletePost(resp.data.id);
-        });
+         })
+         .catch((e) => console.log('Error al eliminar el post!'));
     };
 
     return (
@@ -23,7 +27,7 @@ const PostRow = (props) => {
             <td>{props.description}</td>
             <td>
                 <button 
-                    className="btn btn-danger btn-block" 
+                    className="btn btn-delete btn-block text-light" 
                     onClick={() => deletePost(props.id)}
                 >
                     Eliminar

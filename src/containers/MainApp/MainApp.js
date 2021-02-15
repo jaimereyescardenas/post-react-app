@@ -10,10 +10,14 @@ import CreateBar from '../../components/CreateBar/CreateBar';
 import BASE_URL from '../../helpers/data';
 import * as actionTypes from '../../store/actions';
 
+import './MainApp.css';
+
 const MainApp = (props) => {
 
     if (!props.initialLoad) {
-        axios.get(BASE_URL + '/posts').then(response => props.onInitialLoad(response.data));
+        axios.get(BASE_URL + '/posts')
+         .then(response => props.onInitialLoad(response.data))
+         .catch((e) => console.log('Error al cargar los posts!'));
     }
 
     return (

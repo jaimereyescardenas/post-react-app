@@ -1,5 +1,7 @@
 import React from "react";
+
 import PostRow from '../../components/PostRow/PostRow';
+import './ResultsTable.css';
 
 export default function ResultsTable(props) {
 
@@ -8,12 +10,12 @@ export default function ResultsTable(props) {
             <div>
                 <p className="d-none">Cantidad de posts: {props.posts.length}</p>
             </div>
-            <table className="table table-striped results-table">
+            <table className="table table-striped Results-table">
                 <thead className="thead-dark">
                     <tr>
                         <th>Nombre</th>
                         <th>Descripción</th>
-                        <th>Acción</th>
+                        <th className="text-center">Acción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,8 +28,7 @@ export default function ResultsTable(props) {
                                 No hay posts que mostrar
                             </td>
                         </tr>
-                    ) : null}
-                    {props.posts.map((post) => {
+                    ) : props.posts.map((post) => {
                         return (
                             <PostRow
                                 key={post.id}
