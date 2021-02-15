@@ -7,12 +7,13 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import ResultsTable from '../../components/ResultsTable/ResultsTable';
 import CreateBar from '../../components/CreateBar/CreateBar';
 
+import BASE_URL from '../../helpers/data';
 import * as actionTypes from '../../store/actions';
 
 const MainApp = (props) => {
 
     if (!props.initialLoad) {
-        axios.get('http://localhost:8080/posts').then(response => props.onInitialLoad(response.data));
+        axios.get(BASE_URL + '/posts').then(response => props.onInitialLoad(response.data));
     }
 
     return (
@@ -36,6 +37,7 @@ const MainApp = (props) => {
 
 const mapStateToProps = state => {
     return {
+        totalPosts: state.totalPosts,
         posts: state.posts,
         initialLoad: state.initialLoad
     };
@@ -43,7 +45,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onInitialLoad: (payload) => dispatch({ type: actionTypes.INITIAL_LOAD, payload: payload })
+        onInitialLoad: (payload) => dispatch({ type: actionTypes.INITIAL_LOAD, payload: payload }),
+        onFilterPosts: (value) => dispatch({ type: actionTypes.FILTER_POSTS, value: value }),
+        onAddPost: (post) => dispatch({ type: actionTypes.ADD_POST, post: post }),
+        onDeletePost: (id) => dispatch({ type: actionTypes.DELETE_POST, id: id })
     };
 };
 

@@ -31,6 +31,7 @@ export default function ResultsTable(props) {
                         return (
                             <PostRow
                                 key={post.id}
+                                id={post.id}
                                 title={post.title}
                                 description={post.description} 
                             />
