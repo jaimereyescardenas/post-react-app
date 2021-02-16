@@ -24,14 +24,14 @@ const MainApp = (props) => {
         <main className="container App-main">
             <div className="text-center mx-auto my-4">
                 <Paragraph 
-                  text={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, delectus non! Error et, praesentium aut laboriosam distinctio quaerat quos! Sunt, cupiditate tenetur enim dignissimos quisquam corporis harum placeat animi est.'}
+                  text={'Esta es una aplicación web hecha con React y node.js, que administra registros de posts. Cada post tiene su nombre (título) y una descripción breve. Se puede agregar posts, filtrarlos por nombre y eliminarlos.'}
                 />
             </div>
             <SearchBar></SearchBar>
             <ResultsTable posts={props.posts}></ResultsTable>
             <div className="text-center mx-auto my-4">
                 <Paragraph 
-                  text={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, delectus non! Error et, praesentium aut laboriosam distinctio quaerat quos!'}
+                  text={'Puedes probar a crear un post completando los campos de abajo y presionando el botón "Crear".'}
                 />
             </div>
             <CreateBar/>
@@ -49,10 +49,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onInitialLoad: (payload) => dispatch({ type: actionTypes.INITIAL_LOAD, payload: payload }),
-        onFilterPosts: (value) => dispatch({ type: actionTypes.FILTER_POSTS, value: value }),
-        onAddPost: (post) => dispatch({ type: actionTypes.ADD_POST, post: post }),
-        onDeletePost: (id) => dispatch({ type: actionTypes.DELETE_POST, id: id })
+        onInitialLoad: (payload) => dispatch({
+            type: actionTypes.INITIAL_LOAD, payload: payload 
+        })
     };
 };
 

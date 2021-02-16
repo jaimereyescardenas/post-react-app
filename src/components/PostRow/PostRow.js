@@ -47,10 +47,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onInitialLoad: (payload) => dispatch({ type: actionTypes.INITIAL_LOAD, payload: payload }),
-        onFilterPosts: (value) => dispatch({ type: actionTypes.FILTER_POSTS, value: value }),
-        onAddPost: (post) => dispatch({ type: actionTypes.ADD_POST, post: post }),
-        onDeletePost: (id) => dispatch({ type: actionTypes.DELETE_POST, id: id })
+        onDeletePost: (id) => dispatch({
+            type: actionTypes.DELETE_POST, id: id 
+        })
     };
 };
 

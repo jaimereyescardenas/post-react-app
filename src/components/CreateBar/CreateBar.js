@@ -13,12 +13,12 @@ const CreateBar = (props) => {
     const [descState, setDescState] = useState('');
 
     const addPost = (title, desc) => {
-        const post = {
+        const postData = {
             title: title,
             description: desc
         };
 
-        axios.post(BASE_URL + '/post', post)
+        axios.post(BASE_URL + '/post', postData)
          .then(resp => {
             props.onAddPost(resp.data);
             clearInput();
@@ -40,7 +40,7 @@ const CreateBar = (props) => {
                             name="create-name"
                             placeholder="Nombre" 
                             className="form-control my-2" 
-                            value={titleState}
+                            value={titleState} 
                             onChange={(event) => setTitleState(event.target.value)}
                         />    
                     </div>
@@ -49,7 +49,7 @@ const CreateBar = (props) => {
                             name="create-desc" 
                             placeholder="Descripción" 
                             className="form-control my-2" 
-                            value={descState}
+                            value={descState}  
                             onChange={(event) => setDescState(event.target.value)}
                         />    
                     </div>
@@ -68,7 +68,11 @@ const CreateBar = (props) => {
                     <div className="col-sm-6 col-12">
                         <button 
                             className="btn btn-create btn-block text-light my-2" 
-                            onClick={() => addPost(titleState, descState)}
+                            onClick={() => {
+                                if (titleState && descState) {
+                                    addPost(titleState, descState);
+                                }
+                            }}
                         >
                             Crear
                         </button>
@@ -89,10 +93,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onInitialLoad: (payload) => dispatch({ type: actionTypes.INITIAL_LOAD, payload: payload }),
-        onFilterPosts: (value) => dispatch({ type: actionTypes.FILTER_POSTS, value: value }),
-        onAddPost: (post) => dispatch({ type: actionTypes.ADD_POST, post: post }),
-        onDeletePost: (id) => dispatch({ type: actionTypes.DELETE_POST, id: id })
+        onAddPost: (post) => dispatch({ 
+            type: actionTypes.ADD_POST, post: post 
+        })
     };
 };
 
